@@ -124,6 +124,7 @@ function update(){
             context.drawImage(ali.img, ali.x, ali.y , ali.width, ali.height);
             if (ali.y >= ship.y){
                 gameover=true;
+                alert("GAME OVER!\n Your Score:"+score);
             }
         }
     }
