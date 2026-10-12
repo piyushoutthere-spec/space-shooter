@@ -31,6 +31,8 @@ let aliheight= tilesize;
 let aliX = tilesize;
 let aliY = tilesize;
 let aliimg;
+let aliImg =[];
+let cuurentAlicolor = 0;
 
 let alirows = 2;
 let alicolumns= 3;
@@ -41,6 +43,9 @@ let alivelocityX = 1; // ali moving speed
 let bulletArray =[];
 let bulletvelocityY = -10; // bullet spped
 
+let score = 0;
+let gameover = false;
+let GS=false;
 
 window.onload = function(){
     board = document.getElementById("board");
@@ -56,20 +61,45 @@ window.onload = function(){
     shipimg = new Image();
     shipimg.src = "imgs/ship.png";
     shipimg.onload = function(){
-    context.drawImage(shipimg, ship.x , ship.y, ship.width, ship.height);
+        if(!GS){
+           context.drawImage(shipimg, ship.x , ship.y, ship.width, ship.height);
     }
+};
+    
+    let alienfiles=[
+        "imgs/alien.png",
+        "imgs/alien-cyan.png",
+        "imgs/alien-magenta.png",
+        "imgs/alien-yellow.png"
+    ];
+    
+    let imagesloaded= 0;
+    alienfiles.forEach((src,index)=>{
+        aliImg[index]=new Image();
 
-    aliimg = new Image();
-    aliimg.src = "imgs/alien.png";
-    createAli();
+        aliImg[index].onload = function(){
+            imagesloaded++;
+
+            if(imagesloaded=== alienfiles.length){
+                aliimg = aliImg[cuurentAlicolor];
+                createAli();
+            }
+        };
+        aliImg[index].src=src;
+    });
 
     requestAnimationFrame(update);
     document.addEventListener("keydown", moveship);
     document.addEventListener("keyup",shoot);
-}
+    document.getElementById("startbtn").addEventListener("click",startGame);
+    document.getElementById("restartbtn").addEventListener("click",restartGame);
+}    
 
 function update(){
     requestAnimationFrame(update);
+    if (gameover || !GS){
+        return;
+    }
     
     context.clearRect(0,0, board.width , board.height);
 
@@ -91,7 +121,10 @@ function update(){
                     aliArray[j].y += aliheight;
                 }
             }
-            context.drawImage(aliimg, ali.x, ali.y , ali.width, ali.height);
+            context.drawImage(ali.img, ali.x, ali.y , ali.width, ali.height);
+            if (ali.y >= ship.y){
+                gameover=true;
+            }
         }
     }
 
@@ -109,6 +142,7 @@ function update(){
                 bullet.used = true;
                 ali.alive = false;
                 alicount--;
+                score +=10;
             }
         }
     }
@@ -117,9 +151,28 @@ function update(){
     while(bulletArray.length>0 && (bulletArray[0].used|| bulletArray[0].y <0)){
         bulletArray.shift();
     }
+
+    // next level
+    if (alicount== 0){
+        cuurentAlicolor=(cuurentAlicolor+1)% aliImg.length;
+        aliimg = aliImg[cuurentAlicolor];
+        alicolumns = Math.min(alicolumns + 1 , columns/2-2);
+        alirows= Math.min(alirows+1, rows-4);
+        alivelocityX += 0.2;
+        aliArray=[];
+        bulletArray=[];
+        createAli();
+    }
+    // score
+    context.fillStyle= "white";
+    context.font="16px courier";
+    context.fillText(score,5,20);
 }
 
 function moveship(e){
+    if (gameover){
+        return;
+    }
     if (e.code == "ArrowLeft" && ship.x - shipvelocityX >= 0){
         ship.x -= shipvelocityX; // move left
     }
@@ -147,6 +200,10 @@ function createAli(){
 }
 
 function shoot(e){
+    if (gameover){
+        return;
+    }
+
     if(e.code =="Space"){
         // shoot
         let bullet ={
@@ -165,5 +222,29 @@ function detectCollision(a,b){
            a.x + a.width > b.x &&
            a.y < b.y + b.height &&
            a.y + a.height> b.y;
+}
 
+function startGame(){
+    if (!gameover){
+        GS = true;
+    }
+}
+
+function restartGame(){
+    ship.x = shipX;
+    aliArray=[];
+    bulletArray=[];
+
+    score = 0;
+    gameover= false;
+    GS= true;
+
+    alicolumns=3;
+    alirows= 2;
+    alivelocityX=1;
+
+    cuurentAlicolor=0;
+    aliimg=aliImg[cuurentAlicolor];
+
+    createAli();
 }
