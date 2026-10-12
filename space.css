@@ -6,3 +6,17 @@ body{
 #board{
     background-color: black;
 }
+.Gc{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    gap:12px;
+}
+.GB{
+    display:flex;
+    justify-content: center;
+    gap:10px
+}
+h1 {
+    text-align: center;
+}
