@@ -59,7 +59,7 @@ window.onload = function(){
     // load img
 
     shipimg = new Image();
-    shipimg.src = "imgs/ship.png";
+    shipimg.src = "imgs/shooter.png.png";
     shipimg.onload = function(){
         if(!GS){
            context.drawImage(shipimg, ship.x , ship.y, ship.width, ship.height);

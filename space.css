@@ -1,6 +1,10 @@
 body{
     font-family:'Courier New', Courier, monospace;
     text-align: center;
+    background-color: black;
+    background-image: url("imgs/space.png"), url("imgs/monst.png");
+    background-position: left 50%, right 50%;
+    background-size: 120px , 100px
 }
 
 #board{
@@ -19,4 +23,5 @@ body{
 }
 h1 {
     text-align: center;
+    color: blue;
 }
