@@ -5,9 +5,10 @@ The Game is made by HTML, CSS, JavaScript. I have initially placed 6 white alien
 aliens are destroyed, the next level's alien changes it color and also there will be increase in number of aliens. This happens for 4 rounds. in 5th it returns back 
 to white but number increases. I also added start and restart button with scoring system.
 ## Screenshots
-<img width="980" height="801" alt="Screenshot 2026-10-12 192502" src="https://github.com/user-attachments/assets/985dddaf-7169-4895-b347-966e24ccbf29" />
-<img width="873" height="808" alt="Screenshot 2026-10-12 192514" src="https://github.com/user-attachments/assets/d486c2e9-1444-4d33-a973-132352f6d1a1" />
-<img width="853" height="810" alt="Screenshot 2026-10-12 192534" src="https://github.com/user-attachments/assets/d943d77d-783a-4409-b6ce-a5d49b391398" />
+<img width="1527" height="727" alt="image" src="https://github.com/user-attachments/assets/2eab0122-ee1b-48d4-8fac-86d53d797e41" />
+<img width="1517" height="727" alt="image" src="https://github.com/user-attachments/assets/ed2f8201-ff19-416b-ae88-b51800d47850" />
+<img width="1527" height="727" alt="image" src="https://github.com/user-attachments/assets/1d5346ed-da89-4b04-b442-5af143fecf90" />
+
 
 # Getting started
 ### Dependencies
