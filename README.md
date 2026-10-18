@@ -9,7 +9,10 @@ to white but number increases. I also added start and restart button with scorin
 <img width="1517" height="727" alt="image" src="https://github.com/user-attachments/assets/ed2f8201-ff19-416b-ae88-b51800d47850" />
 <img width="1527" height="727" alt="image" src="https://github.com/user-attachments/assets/1d5346ed-da89-4b04-b442-5af143fecf90" />
 
-
+## Tech stacks 
+- I used HTML , CSS , JavaScript to make this project
+- I Downloaded few images from online to make it use as my background
+- I also changed the shooter from very common design to some better colorful design which i got it online
 # Getting started
 ### Dependencies
 - It can be run on all OS and version with a Webrowser
